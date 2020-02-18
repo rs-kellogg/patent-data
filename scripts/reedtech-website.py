@@ -28,7 +28,7 @@ def simple_get(url):
                 return None
 
     except RequestException as e:
-        log_error('Error during requests to {0} : {1}'.format(url, str(e)))
+        log_error("Error during requests to {0} : {1}".format(url, str(e)))
         return None
 
 
@@ -36,10 +36,12 @@ def is_good_response(resp):
     """
     Returns True if the response seems to be HTML, False otherwise.
     """
-    content_type = resp.headers['Content-Type'].lower()
-    return (resp.status_code == 200 
-            and content_type is not None 
-            and content_type.find('html') > -1)
+    content_type = resp.headers["Content-Type"].lower()
+    return (
+        resp.status_code == 200
+        and content_type is not None
+        and content_type.find("html") > -1
+    )
 
 
 def log_error(e):
@@ -54,17 +56,18 @@ def log_error(e):
 def main():
     url_base = "https://patents.reedtech.com"
     raw_html = simple_get(f"{url_base}/pgyb.php#15874")
-    html = BeautifulSoup(raw_html, 'html.parser')
-    tarballs = [td.a['href'] for td in html.select('td') if td.a and td.a['href'].endswith('.tar')]
+    html = BeautifulSoup(raw_html, "html.parser")
+    tarballs = [
+        td.a["href"]
+        for td in html.select("td")
+        if td.a and td.a["href"].endswith(".tar")
+    ]
     for t in tarballs:
-        parts = t.split('/')
+        parts = t.split("/")
         filename = parts[-1]
-        if filename.startswith('18'):
+        if filename.startswith("18"):
             print(f"{url_base}/{t}")
 
 
 if __name__ == "__main__":
     main()
-
-
-

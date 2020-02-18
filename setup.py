@@ -1,15 +1,15 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='ocr review',
+    name='patent-data',
     version='0.1.1',
     author='Will Thompson',
     author_email='wkt@northwestern.edu',
     maintainer='Will Thompson',
     maintainer_email='wkt@northwestern.edu',
-    description='NLP Library for OMOP Abstractor',
+    description='Patent Data',
     url='https://github.com/textractortechnologies/omop-abstractor-nlp',
-    packages=find_packages(include=['review', 'review.*']),
+    packages=find_packages(include=['patent', 'patent.*']),
     # package_data={'review': ['data/*.j2']},
     include_package_data=True,
     install_requires=[
